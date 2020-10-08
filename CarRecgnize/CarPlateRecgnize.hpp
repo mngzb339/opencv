@@ -33,6 +33,7 @@ private:
     void clearFixPoint(Mat& src);
     int verityCharSize(Mat src);
     int getCityIndex(vector<Rect> src);
+    void getChineseRect(Rect city,Rect& chineseRect);
 
     CarSobelPlateLocation *pateSobelLocation=0;
     CarColorPlateLocation *pateColorLocation=0;

@@ -121,6 +121,11 @@ string CarPlateRecgnize::plateRecgnize(Mat src){
     //汉字比较特殊
     // 如何拿汉字的矩形：获取城市字符的轮廓所在集合的下标 比如湘A ，那么A就是城市字符 代表长沙
     int cityIndex = getCityIndex(charVec);
+    
+    //通过城市的下标 判断获取汉字轮廓
+    Rect chineseRect;
+    getChineseRect(charVec[cityIndex], chineseRect);
+    
     plate_gray.release();
     plate_shold.release();
     return "";
@@ -214,4 +219,18 @@ int CarPlateRecgnize::getCityIndex(vector<Rect> src) {
     }
 
     return cityIndex;
+}
+void CarPlateRecgnize::getChineseRect(Rect city, Rect& chineseRect) {
+    //把宽度稍微扩大一点
+    float width = city.width * 1.15f;
+    //城市轮廓的x坐标
+    int x = city.x;
+
+    //x ：当前汉字后面城市轮廓的x坐标
+    //减去城市的宽
+    int newX = x - width;
+    chineseRect.x = newX >= 0 ? newX : 0;
+    chineseRect.y = city.y;
+    chineseRect.width = width;
+    chineseRect.height = city.height;
 }
