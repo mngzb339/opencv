@@ -30,6 +30,9 @@ public:
     
 private:
     void getHogFeatures(HOGDescriptor* svmHog,Mat src,Mat& out);
+    void clearFixPoint(Mat& src);
+    int verityCharSize(Mat src);
+    int getCityIndex(vector<Rect> src);
 
     CarSobelPlateLocation *pateSobelLocation=0;
     CarColorPlateLocation *pateColorLocation=0;

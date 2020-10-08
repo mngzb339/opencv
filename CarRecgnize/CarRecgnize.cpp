@@ -10,7 +10,6 @@
 
 int main()
 {
-    
     CarPlateRecgnize *p = new CarPlateRecgnize("/Users/liuyang/Desktop/opencv/HOG_SVM_DATA2.xml");
     Mat src= imread("/Users/liuyang/Desktop/opencv/test1.jpg");
     p->plateRecgnize(src);
